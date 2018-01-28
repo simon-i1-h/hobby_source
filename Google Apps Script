@@ -1,0 +1,24 @@
+//LINEとの連携部分(Part of cooperation with LINE)
+function sendHttpPost(message){
+  var access_token = "あなたのアクセストークン(your access token)";
+  var options =
+   {
+     "method"  : "post",
+     "payload" : "message=" + message,
+     "headers" : {"Authorization" : "Bearer "+ access_token}
+   };
+   UrlFetchApp.fetch("https://notify-api.line.me/api/notify",options);
+}
+
+//Googleフォームの回答をメッセージとしてLINEへ送る(Googleフォームの回答をメッセージとしてLINEへ送る)
+function submitForm(e){
+  var itemResponses = e.response.getItemResponses();
+  var message = '';
+  for (var i = 0; i < itemResponses.length; i++) {
+    var itemResponse = itemResponses[i];
+    var question = itemResponse.getItem().getTitle();
+    var answer = itemResponse.getResponse();
+    message += (i + 1).toString() + '. ' + question + ': ' + answer + '\n';
+  }
+  sendHttpPost(message); 
+}
