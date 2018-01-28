@@ -10,7 +10,7 @@ function sendHttpPost(message){
    UrlFetchApp.fetch("https://notify-api.line.me/api/notify",options);
 }
 
-//Googleフォームの回答をメッセージとしてLINEへ送る(Googleフォームの回答をメッセージとしてLINEへ送る)
+//Googleフォームの回答をメッセージとしてLINEへ送る(Send Google Form's response to LINE as a message)
 function submitForm(e){
   var itemResponses = e.response.getItemResponses();
   var message = '';
